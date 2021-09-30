@@ -7,7 +7,7 @@ export const QuoteItem = ({ quote }) => {
 
     <IonCol size="6" className="animate__animated animate__fadeIn">
       <IonItem lines="none" className={ styles.quoteItem } routerLink={ `/quote/${ quote.id }`}>
-        <IonLabel>
+        <IonLabel className={ styles.quoteText }>
           <h2>{ quote.text }</h2>
           <p>{ quote.author }</p>
         </IonLabel>

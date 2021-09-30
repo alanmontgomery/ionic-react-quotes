@@ -9,3 +9,13 @@
 	color: white;
 	padding: 1rem;
 }
+
+.quoteText p {
+
+	color: rgb(25, 51, 93);
+}
+
+.quoteText h1:hover {
+
+	color: white;
+}
