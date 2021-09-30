@@ -1,4 +1,4 @@
-import { IonButtons, IonContent, IonGrid, IonHeader, IonInfiniteScroll, IonInfiniteScrollContent, IonList, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonInfiniteScroll, IonInfiniteScrollContent, IonList, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import { useStoreState } from 'pullstate';
 import { useState } from 'react';
 import { QuoteItem } from '../components/QuoteItem';
@@ -24,36 +24,47 @@ const Saved = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Saved Quotes</IonTitle>
+          <IonTitle>Bookmarks</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Saved Quotes</IonTitle>
+            <IonTitle size="large">Bookmarks</IonTitle>
           </IonToolbar>
         </IonHeader>
 
         <IonGrid>
-          <IonList>
+          { quotes.length > 0 &&
+          
+            <IonList>
+              <IonRow>
+                { quotes.map((quote, index) => {
+
+                  if ((index <= amountLoaded) && saved.includes(parseInt(quote.id))) {
+                    return (
+
+                      <QuoteItem key={ index } quote={ quote } />
+                    );
+                  } else return "";
+                })}
+
+                <IonInfiniteScroll threshold="200px" onIonInfinite={ fetchMore }>
+                  <IonInfiniteScrollContent loadingSpinner="bubbles" loadingText="Getting more quotes...">
+                  </IonInfiniteScrollContent>
+                </IonInfiniteScroll>
+              </IonRow>
+            </IonList>
+          }
+
+          { quotes.length < 1 &&
             <IonRow>
-              { quotes.map((quote, index) => {
-
-                if ((index <= amountLoaded) && saved.includes(parseInt(quote.id))) {
-                  return (
-
-                    <QuoteItem key={ index } quote={ quote } />
-                  );
-                } else return "";
-              })}
-
-              <IonInfiniteScroll threshold="200px" onIonInfinite={ fetchMore }>
-                <IonInfiniteScrollContent loadingSpinner="bubbles" loadingText="Getting more quotes...">
-                </IonInfiniteScrollContent>
-              </IonInfiniteScroll>
+              <IonCol size="12">
+                <h3>You haven't saved any bookmarks yet.</h3>
+              </IonCol>
             </IonRow>
-          </IonList>
+          }
         </IonGrid>
       </IonContent>
     </IonPage>
