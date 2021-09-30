@@ -1,0 +1,11 @@
+.quoteItem {
+
+	--quote-item-background: rgb(49, 117, 226);
+
+	border: 2px solid rgb(154, 204, 245);
+	border-radius: 10px;
+	--background: var(--quote-item-background);
+	background: var(--quote-item-background);
+	color: white;
+	padding: 1rem;
+}
