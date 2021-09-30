@@ -11,6 +11,7 @@ If you'd like to support, you can <a className="link" href="https://www.buymeaco
 * Random image generation
 * Infinite Scroll
 * Bookmarking
+* Copy to Clipboard
 * Pullstate
 
 ### To run
